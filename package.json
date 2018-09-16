@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "http-server": "^0.11.1",
     "three-js": "^79.0.0"
   },
   "devDependencies": {},

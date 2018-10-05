@@ -5,7 +5,7 @@ const dat = require('dat.gui');
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(90, window.innerWidth / window.innerHeight, 0.1, 1000);
-// const controls = new OrbitControls(camera);
+const controls = new OrbitControls(camera);
 const renderer = new THREE.WebGLRenderer();
 
 
@@ -49,43 +49,35 @@ scene.add(pLight);
 
 
 camera.position.set(10, 2, 5);
-// camera.lookAt(new THREE.Vector3(10, 2.0, 0 ));
+camera.lookAt(new THREE.Vector3(10, 2.0, 0 ));
 
-// controls.autoRotate = true;
+controls.autoRotate = true;
 
 
 function animate() {
 	requestAnimationFrame(animate);
 	cube.rotation.x += 0.01;
 	cube.rotation.y += 0.01;
-	// controls.update();
+	controls.update();
 	renderer.render(scene, camera);
 }
 
 animate();
 
-// const GuiController = function () {
-// 	this.speed = 10;
-// 	this.camera.position = [10, 2, 5];
-// };
+// let self = this;
+const GuiController = function () {
+	this.speed = 10;
+	this.camera = camera;
+	this.floor = floor;
 
-// window.onload = function () {
-// 	const control = new GuiController();
-// 	const gui = new dat.GUI();
-// 	gui.add(control, 'speed');
-// };
+};
 
-// const params = {
-// 	//
-// };
-// const FizzyText = function () {
-// 	console.log(this);
-// };
+window.onload = function () {
+	const control = new GuiController();
+	const gui = new dat.GUI();
+	gui.add(control, 'speed', 0, 10);
+	gui.add(control, 'floor', 0, 10);
+	console.log(control.camera.position.x);
+	// gui.add(control, 'floor', 0, 100);
 
-// window.onload = function () {
-// 	const text = new FizzyText();
-// 	const gui = new dat.GUI();
-// 	// gui.add(text, 'message');
-// 	// gui.add(text, 'speed', -5, 5);
-// 	// gui.add(text, 'displayOutline');
-// };
+};
